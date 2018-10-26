@@ -1,0 +1,21 @@
+In this paper we discuss the problem of finding the maximum sum rate of a group of users in the context of a wireless MU-MIMO downlink utilizing maximum ration transmission beamforming (MRTBF). In the scenario considered, it is assumed that groups of $l$ users are chosen from a set of $n$ candidate users. Therefore, there are a total of $\binom{n}{l}$ different combinations of user groups.  We can express the sum rate for each of these groups in terms of the sum of the Shannon capacity for each of the users in the group. Therefore, the maximum sum rate can be expressed as
+
+\begin{equation}\label{eq:c_max}
+    \begin{aligned}
+    C_{max} &= \max_{i\in\binom{n}{l}}\bigg\lbrace \sum_{k=1}^l\log_2\bigg(1+\frac{P\Vert\underline{h}^{(i)}_k \Vert^2}{\sum_{j\neq k}^lP\vert \underline{h}^{(i)H}_k \underline{h}^{(i)}_j\vert^2 + \sigma_n^2}\bigg)\bigg\rbrace \\
+    &= \max_{i\in\binom{n}{l}}\lbrace C_i\rbrace \ .
+    \end{aligned}
+\end{equation}
+
+In this expression the second term in the logarithm is the SINR for the case of MRTBF under the assumption of equal power allocation, where $P$ is the total available transmit power, and $N$ is the number of transmit antennas. In reality, the expression in the numerator is scaled by $\frac{P}{N\sigma_h^2}$, where $\sigma_h^2$ is the variance of each element in the channel vector.  The variable $\underline{h}_k^{(i)}$ is the $k^{th}$ channel vector of the $i^{th}$ user group. $\underline{h}_k^{(i)}$ is a $N\times 1$ vector. Each of the terms of the vector experience small-scale Rayleigh fading, therefore they are modelled as circularly symmetric normal random variables $\sim\mathcal{N}_c(0,\frac{1}{N})$. Therefore, the factors of $N$ cancel, leaving just $P$. This scaling factor gives us a SNR value of $\frac{P}{\sigma_n^2}$, where it is assumed that the channel experiences AWGN $\sim\mathcal{N}_C(0,\sigma_n^2)$.
+
+Searching these groups of users becomes computationally arduous, since the number of groups grows quickly as the number of candidates becomes large. Motivated by reducing the computational complexity of finding groups of users with high throughput, we employ semi-orthogonal user selection (SUS). The SUS scheme subjects channels associated with users to constraints on magnitude (norm) and pair-wise orthogonality. Such a scheme reduces the search space by discarding users with poor channel gain, and discarding groups of users that do not meet a sufficient degree of orthogonality.
+
+We can describe the collection of $\epsilon$-orthogonal sets (user groups) by invoking constraints on norm and orthogonality. Let $\mathscr{S}_\epsilon$ be a collection of $\epsilon$-orthogonal sets. $\mathscr{S}_\epsilon$ is formed by testing all subsets of the set of candidate vectors, $\mathsf{A}^{(i)}\subset\mathsf{C}\ : \ \vert \mathsf{A}^{(i)} \vert = l$, against the channel norm and orthogonality constraints previously developed. Thus, $\mathscr{S}_\epsilon$ is a collection of $l$-length sets. The vectors contained within each of these $l$-length sets are mutually $\epsilon$-orthogonal. In the case that $\mathscr{S}_\epsilon = \lbrace \emptyset \rbrace$, no $\epsilon$-orthogonal sets of cardinality $l$ exist in the set of candidate vectors $\mathsf{C}$. This can be expressed more formally as:
+ \begin{equation}\label{eq:S_e}
+    \begin{aligned}
+        \mathscr{S}_\epsilon = \lbrace \mathsf{A}^{(i)}\ \big|\ | \underline{h}_k^{(i)H}\underline{h}_j^{(i)} |\ <\ \epsilon \ \text{;} \ \rho^-<\Vert \underline{h}_k^{(i)} \Vert^2 < \rho^+\ \forall \ k \neq j \in \mathsf{A}^{(i)} \rbrace \ \forall \mathsf{A}^{(i)}\subset \mathsf{C} \ \ .
+    \end{aligned}
+\end{equation}
+
+The objective of this paper is to develop an expression for the lower bound on the expected sum rate when users are subjected to SUS constraints.

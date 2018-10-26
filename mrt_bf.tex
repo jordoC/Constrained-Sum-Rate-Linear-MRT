@@ -1,0 +1,33 @@
+
+ We now consider interference to develop an expression for SINR that makes use of the MRT scheme. It is important to notice the MRT scheme does not mitigate the effects of interference. The MRT scheme is a special case of a more general beamforming scheme that does not neglect interference (as one might expect). A method for arriving at such a beamforming scheme is discussed at some length in \cite{Bjornson2014}. An MRT scheme is assumed here for the sake of practical simplicity. The SINR in the MRT case is given by:
+  \begin{equation}
+     \begin{aligned}\label{eq:sinr_mrt}
+            SINR_k^{(i)} &=  \frac{P\Vert \underline{h}_k^{(i)}\Vert^2}{P\sum_{j \neq k}^l  \frac{\vert\underline{h}_k^{(i)H}\underline{h}_j^{(i)}\vert^2}{\Vert \underline{h}_j^{(i)}\Vert^2}  + \sigma_n^2} \ .
+     \end{aligned}
+ \end{equation}
+ 
+ Observe from Eq. (\ref{eq:sinr_mrt}) that the interference term in the denominator is in the form of an inner product between two channel vectors. This inner product term can be interpreted as a measure of orthogonality between the two stochastic channel vectors. Moreover, there are several channel norm terms in this expression. Consider comparing these terms to the orthogonality and norm constraints in Eq. (\ref{eq:S_e}). Thus, we can make substitutions to Eq. (\ref{eq:sinr_mrt}) that incorporate SUS orthogonality and channel norm constraints from \ref{eq:S_e}.
+\begin{equation}\label{eq:sinr_epsilon}
+    \begin{aligned}
+        SINR_k^{(i)} &\geq  \frac{P \cdot \rho^-}{P\sum_{j \neq k}^l  \frac{\epsilon^2}{\rho^-}  + \sigma_n^2} \\
+        &=\frac{P \cdot \rho^-}{\frac{P\cdot(l-1)\epsilon^2}{\rho^-}  + \sigma_n^2}
+    \end{aligned}
+\end{equation}
+
+The lower bound on SINR will now be used to develop expressions for Shannon capacity and sum rate. In order to develop these expressions, several additional assumptions are made. It is assumed that each user in the group has the same Shannon capacity; that is, each user has the same channel norm and pair-wise inner product with the other users in the group. In order to make this assumption realistic, it is assumed that the candidate users are selected such the path loss of the candidate users are similar and small enough such that the transmitter is capable of transmitting to each of the users in the group. Therefore, the SINR for each of the users in the group that meet the norm and orthogonality constraints will be approximately the same. The expected sum rate conditioned on the existence of a group meeting the norm and orthogonality constraints is given by
+\begin{equation}\label{eq:sum_rate_conditional}
+    \begin{aligned}
+        \overline{C} \ \vert \ [Pr_\epsilon = 1] &\geq  l\cdot \log_2\bigg(1+\frac{P \cdot \rho^-}{\frac{P\cdot(l-1)\epsilon^2}{\rho^-}  + \sigma_n^2}\bigg) \ .
+    \end{aligned}
+\end{equation}
+Thus, the expected sum rate is given by:
+\begin{equation}\label{eq:sum_rate}
+    \begin{aligned}
+        \overline{C} &\geq  l\cdot \log_2\bigg(1+\frac{P \cdot \rho^-}{\frac{P\cdot(l-1)\epsilon^2}{\rho^-}  + \sigma_n^2}\bigg) \cdot Pr_\epsilon \ .
+    \end{aligned}
+\end{equation}
+Where $Pr_\epsilon$ is the probability that at least one group will meet the norm and orthogonality requirements. The expression in Eq. (\ref{eq:sum_rate_conditional}) is conditioned on the fact that the SUS group exists. In the context of this experiment, there are a finite number of STAs available to the AP. Moreover, a finite subset of these STAs are considered for addition to a given SUS group in order to limit channel sounding overhead. Therefore, it is not guaranteed that an SUS group will exist. Furthermore, the probability that an SUS group exists, $P_{\epsilon}$, may be expressed in terms of the parameters $\epsilon,\rho^-,\rho_+$, and the number of candidate STAs considered for addition to the SUS group \cite{Swannack2005}
+
+It is important to note here that only one SUS group receives data at any given time. For example, if there are four transmit antennas, and there are two STAs in the group, then only two STAs receive service. Two of the transmit antennas are unused, and only one SUS group of two STAs receives service at a given time. It is also worth while to note that the no weighting scheme that encourages fairness used.
+
+
